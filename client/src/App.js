@@ -1,6 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import PlayerDisplay from './components/PlayerDisplay.js';
+import PlayerFetch from './components/PlayerFetch.js';
+
+
 
 import './App.css';
 
@@ -11,8 +14,7 @@ class App extends React.Component {
     players: []
   };
   }
-
-  componentDidMount() {
+ componentDidMount() {
     axios
       .get('http://localhost:5000/api/players')
       // .then(res => console.log('axios call', res)) //returns an array of players called data
@@ -26,12 +28,14 @@ class App extends React.Component {
     console.log('state is set render', this.state.players)
     return (
       <div className="App">
-          <h1>World Women's Cup</h1>
+
+          <h1>World Women's Cup Players</h1>
           <div className="player-box">
               {this.state.players.map(players => {
                 return <PlayerDisplay key={players.id} players={players} />
               })}
           </div>
+          <PlayerFetch />
       </div>
     )}
 }
