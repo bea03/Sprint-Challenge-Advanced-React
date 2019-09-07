@@ -2,8 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 
+afterEach(rtl.cleanup);
+
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+
+ rtl.render(<App />)
 });
+
+
+test('fetch on page', () => {
+  const { getByText } = render(<App />);
+  getByText(/fetch/i);
+})
